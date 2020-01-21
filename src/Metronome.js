@@ -2,15 +2,38 @@ import React, { Component } from "react";
 import "./Metronome.css";
 
 class Metronome extends Component {
+  constructor(props) {
+    super(props);
+
+    // Initialize state so we can use the variables in the
+    // render function
+    this.state = {
+      playing: false,
+      count: 0,
+      bpm: 100,
+      beatsPerMeasure: 4
+    };
+  }
+
+  // Makes slider work. Passed as the onChange prop of the input
+  handleBPMChange = event => {
+    const bpm = event.target.value;
+    this.setState({ bpm });
+  };
   render() {
-    let bpm = 100;
-    let playing = false;
+    const { playing, bpm } = this.state;
 
     return (
       <div className="metronome">
         <div className="bpm-slider">
           <div>{bpm} BPM</div>
-          <input type="range" min="60" max="240" defaultValue={bpm}></input>
+          <input
+            type="range"
+            min="60"
+            max="240"
+            value={bpm}
+            onChange={this.handleBPMChange}
+          ></input>
         </div>
         <button>{playing ? "Stop" : "Start"}</button>
       </div>
