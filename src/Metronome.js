@@ -27,6 +27,15 @@ class Metronome extends Component {
   handleBPMChange = event => {
     const bpm = event.target.value;
     this.setState({ bpm });
+    console.log(this.state.bpm);
+  };
+
+  // Handles the time measure selection
+  handleTimeSignature = event => {
+    const beatsPerMeasure = event.target.value;
+    this.setState({ beatsPerMeasure }, () =>
+      console.log("Time Signature: " + this.state.beatsPerMeasure)
+    );
   };
 
   // METRONOME CONTROL ===================>
@@ -75,7 +84,19 @@ class Metronome extends Component {
       <div className="metronome">
         <div className="bpm-slider">
           <div>{bpm} BPM</div>
-          <div>{beatsPerMeasure}/4 Timing</div>
+          <div>
+            <label htmlFor="beatsPerMeasure">Select Time Signature: </label>
+            <select
+              id="beatsPerMeasure"
+              name="beatsPerMeasure"
+              value={beatsPerMeasure}
+              onChange={this.handleTimeSignature}
+            >
+              <option value="3">3/4</option>
+              <option value="4">4/4</option>
+              <option value="6">6/4</option>
+            </select>
+          </div>
           <input
             type="range"
             min="60"
