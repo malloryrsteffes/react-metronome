@@ -69,12 +69,13 @@ class Metronome extends Component {
     }));
   };
   render() {
-    const { playing, bpm } = this.state;
+    const { playing, bpm, beatsPerMeasure } = this.state;
 
     return (
       <div className="metronome">
         <div className="bpm-slider">
           <div>{bpm} BPM</div>
+          <div>{beatsPerMeasure}/4 Timing</div>
           <input
             type="range"
             min="60"
