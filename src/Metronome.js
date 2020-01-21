@@ -29,9 +29,44 @@ class Metronome extends Component {
     this.setState({ bpm });
   };
 
-  // Audio files tester
+  // METRONOME CONTROL ===================>
   startStop = () => {
-    this.click1.play();
+    // If PLAYING:
+    if (this.state.playing) {
+      // Clear the timer
+      clearInterval(this.timer);
+      // Set playing state to false + rerenders the app
+      this.setState({
+        playing: false
+      });
+    } else {
+      // If NOT PLAYING:
+
+      // Start a timer with the current BPM.
+      this.timer = setInterval(this.playClick, (60 / this.state.bpm) * 1000);
+      this.setState(
+        {
+          count: 0,
+          playing: true
+        },
+        this.playClick
+      );
+    }
+  };
+
+  playClick = () => {
+    const { count, beatsPerMeasure } = this.state;
+
+    // Gives the first beat a different sound than others
+    if (count % beatsPerMeasure === 0) {
+      this.click2.play();
+    } else {
+      this.click1.play();
+    }
+    // Keep track of which beat we're on
+    this.setState(state => ({
+      count: (state.count + 1) % state.beatsPerMeasure
+    }));
   };
   render() {
     const { playing, bpm } = this.state;
