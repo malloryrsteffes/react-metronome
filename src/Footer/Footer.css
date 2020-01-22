@@ -1,0 +1,24 @@
+.block-div {
+  display: block;
+  padding: 20px;
+  height: 30px;
+  width: 100%;
+}
+
+.sticky-footer {
+  background: #c94d46;
+  color: white;
+  align-content: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.footer-text {
+  width: 33%;
+  text-align: center;
+  margin: 0 auto;
+  padding-bottom: 10px;
+}

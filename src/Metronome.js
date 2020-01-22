@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Footer from "./Footer/Footer.js";
 import "./Metronome.css";
 
 // Sound imports
@@ -34,7 +35,7 @@ class Metronome extends Component {
   handleTimeSignature = event => {
     const beatsPerMeasure = event.target.value;
     this.setState({ beatsPerMeasure }, () =>
-      console.log("Time Signature: " + this.state.beatsPerMeasure)
+      console.log("Time Signature: " + this.state.beatsPerMeasure + "/4")
     );
   };
 
@@ -81,31 +82,34 @@ class Metronome extends Component {
     const { playing, bpm, beatsPerMeasure } = this.state;
 
     return (
-      <div className="metronome">
-        <div className="bpm-slider">
-          <div>{bpm} BPM</div>
-          <div>
-            <label htmlFor="beatsPerMeasure">Select Time Signature: </label>
-            <select
-              id="beatsPerMeasure"
-              name="beatsPerMeasure"
-              value={beatsPerMeasure}
-              onChange={this.handleTimeSignature}
-            >
-              <option value="3">3/4</option>
-              <option value="4">4/4</option>
-              <option value="6">6/4</option>
-            </select>
+      <div className="site-content">
+        <div className="metronome">
+          <div className="bpm-slider">
+            <div>{bpm} BPM</div>
+            <input
+              type="range"
+              min="60"
+              max="240"
+              value={bpm}
+              onChange={this.handleBPMChange}
+            ></input>
+            <div className="bpm-div">
+              <label htmlFor="beatsPerMeasure">Time Signature: </label>
+              <select
+                id="beatsPerMeasure"
+                name="beatsPerMeasure"
+                value={beatsPerMeasure}
+                onChange={this.handleTimeSignature}
+              >
+                <option value="3">3/4</option>
+                <option value="4">4/4</option>
+                <option value="6">6/4</option>
+              </select>
+            </div>
           </div>
-          <input
-            type="range"
-            min="60"
-            max="240"
-            value={bpm}
-            onChange={this.handleBPMChange}
-          ></input>
+          <button onClick={this.startStop}>{playing ? "Stop" : "Start"}</button>
         </div>
-        <button onClick={this.startStop}>{playing ? "Stop" : "Start"}</button>
+        <Footer />
       </div>
     );
   }
