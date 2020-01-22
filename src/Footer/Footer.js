@@ -15,9 +15,27 @@ class Footer extends Component {
         <div className="sticky-footer">
           <div className="footer-text">
             <p>Copyright &copy; 2020 Mallory Steffes</p>
-            <FontAwesomeIcon icon={faLinkedin} style={fontAwesomeStyle} />
-            <FontAwesomeIcon icon={faGithubSquare} style={fontAwesomeStyle} />
-            <FontAwesomeIcon icon={faHome} style={fontAwesomeStyle} />
+            <a
+              href="https://www.linkedin.com/in/mallorysteffes"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon={faLinkedin} style={fontAwesomeStyle} />
+            </a>
+            <a
+              href="https://www.github.com/malloryrsteffes"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon={faGithubSquare} style={fontAwesomeStyle} />
+            </a>
+            <a
+              href="https://www.mallorysteffes.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon={faHome} style={fontAwesomeStyle} />
+            </a>
           </div>
         </div>
       </div>
